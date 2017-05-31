@@ -1,9 +1,11 @@
 package pe.edu.upeu.servicerest.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -11,71 +13,78 @@ import javax.persistence.criteria.CriteriaQuery;
 import org.springframework.transaction.annotation.Transactional;
 
 import pe.edu.upeu.servicerest.bean.BaseEntity;
-import src.main.java.pe.edu.upeu.smscore.dao.Class;
-import src.main.java.pe.edu.upeu.smscore.dao.String;
-import src.main.java.pe.edu.upeu.smscore.dao.SuppressWarnings;
+import pe.edu.upeu.servicerest.bean.Campaign;
 
 public class JpaDao<T extends BaseEntity, I> implements Dao<T, I> {
+    private EntityManager entityManager;
 
-	@SuppressWarnings(value = "unchecked")
-	public <T> List<T> find(Class<T> entityClass, String queryString) {
-		return (List<T>) getEntityManager().find(entityClass, queryString);
-	}
+    protected Class<T> entityClass;
 
-	private EntityManager entityManager;
+    public JpaDao(Class<T> entityClass) {
+        this.entityClass = entityClass;
+    }
 
-	protected Class<T> entityClass;
+    public EntityManager getEntityManager() {
+        return this.entityManager;
+    }
 
-	public JpaDao(Class<T> entityClass) {
-		this.entityClass = entityClass;
-	}
+    @PersistenceContext
+    public void setEntityManager(final EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public List<T> findAll() {
+        final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
+        final CriteriaQuery<T> criteriaQuery = builder.createQuery(this.entityClass);
 
-	public EntityManager getEntityManager() {
-		return this.entityManager;
-	}
+        criteriaQuery.from(this.entityClass);
 
-	@PersistenceContext
-	public void setEntityManager(final EntityManager entityManager) {
-		this.entityManager = entityManager;
-	}
+        TypedQuery<T> typedQuery = this.getEntityManager().createQuery(criteriaQuery);
+        return typedQuery.getResultList();
+    }
 
+    @Override
+    @Transactional(readOnly = true)
+    public T findById(I id) {
+        return this.getEntityManager().find(this.entityClass, id);
+    }
+
+    @Override
+    @Transactional
+    public T save(T entity) {
+        return this.getEntityManager().merge(entity);
+    }
+
+    @Override
+    @Transactional
+    public void delete(I id) {
+        if (id == null) {
+            return;
+        }
+
+        T entity = this.findById(id);
+        if (entity == null) {
+            return;
+        }
+
+        this.getEntityManager().remove(entity);
+    }
+
+    @Override
+    @Transactional
+    public void delete(T entity) {
+        this.getEntityManager().remove(entity);
+    }
+    
+	
+	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
-	public List<T> findAll() {
-		final CriteriaBuilder builder = this.getEntityManager().getCriteriaBuilder();
-		final CriteriaQuery<T> criteriaQuery = builder.createQuery(this.entityClass);
-
-		criteriaQuery.from(this.entityClass);
-
-		TypedQuery<T> typedQuery = this.getEntityManager().createQuery(criteriaQuery);
-		return typedQuery.getResultList();
+	public List<T> find(Class<T> entityClass, String queryString) {
+		Query query = getEntityManager().createQuery(queryString);
+		return (ArrayList<T>)query.getResultList();
 	}
 
-	@Transactional(readOnly = true)
-	public T find(I id) {
-		return this.getEntityManager().find(this.entityClass, id);
-	}
-
-	@Transactional
-	public T save(T entity) {
-		return this.getEntityManager().merge(entity);
-	}
-
-	@Transactional
-	public void delete(I id) {
-		if (id == null) {
-			return;
-		}
-
-		T entity = this.find(id);
-		if (entity == null) {
-			return;
-		}
-
-		this.getEntityManager().remove(entity);
-	}
-
-	@Transactional
-	public void delete(T entity) {
-		this.getEntityManager().remove(entity);
-	}
+	
 }

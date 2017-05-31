@@ -1,5 +1,0 @@
-pe/edu/upeu/servicerest/dao/Dao.class
-pe/edu/upeu/servicerest/bean/BaseEntity.class
-pe/edu/upeu/servicerest/bean/Campaign.class
-pe/edu/upeu/servicerest/dao/JpaDao.class
-pe/edu/upeu/servicerest/controller/RestController.class

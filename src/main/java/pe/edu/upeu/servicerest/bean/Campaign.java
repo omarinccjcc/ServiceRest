@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 
-@Entity
+@Entity(name="campaign")
 public class Campaign implements BaseEntity{
 
 	private static final long serialVersionUID = 1L;

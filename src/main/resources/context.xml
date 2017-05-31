@@ -11,7 +11,7 @@
 
     <!-- SPRING SETUP -->
     <!-- Load properties so we can easily change them -->
-    <context:property-placeholder location="classpath:application.properties"/>
+    <context:property-placeholder location="classpath:pe/edu/upeu/servicerest/config/application.properties"/>
 <!--     <context:property-placeholder location="application.properties"/> -->
 
     <!-- Enable Annotation Configuration in order to automatically scan controllers-->
@@ -47,6 +47,7 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
                 <property name="showSql" value="true"/>
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect"/>                
             </bean>
         </property>
     </bean>

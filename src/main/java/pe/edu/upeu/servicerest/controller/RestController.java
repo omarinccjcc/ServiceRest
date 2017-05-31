@@ -3,6 +3,8 @@ package pe.edu.upeu.servicerest.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,10 +13,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import pe.edu.upeu.servicerest.bean.Campaign;
+import pe.edu.upeu.servicerest.dao.CampaignDao;
 
 @Controller
 public class RestController {
 
+	@Autowired
+	@Qualifier("campaignDao")
+	protected CampaignDao campaignDao;
+	
 	@RequestMapping(value = "/servicerest/campaignall", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody List<Campaign> findCampaignAll() {
 		List<Campaign> list = new ArrayList<Campaign>();
@@ -48,9 +55,15 @@ public class RestController {
 		campaign.setCampaingName("Alumnos de Ingeniería de Industrias Alimentarias");
 		list.add(campaign);
 
-		return list;
+//		return list;
+		return campaignDao.findCampaignAll();
 	}
 
+	@RequestMapping(value = "/servicerest/campaignmessage", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody String findCampaignMessage() {
+		return "hola mundo cruelll";
+	}
+	
 	@RequestMapping(value = "/servicerest/campaignbyid/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody Campaign findCampaignById(@PathVariable String id) {
 		Campaign campaign = new Campaign();
@@ -59,7 +72,7 @@ public class RestController {
 		return campaign;
 	}
 
-	@RequestMapping(value = "/campaigsave", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/campaignsave", method = RequestMethod.POST, headers = "Accept=application/json")
 	public Campaign addCampaign(@RequestBody Campaign campaign) {
 		// return countryService.addCountry(country);
 		return null;

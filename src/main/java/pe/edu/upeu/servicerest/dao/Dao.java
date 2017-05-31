@@ -7,7 +7,7 @@ import pe.edu.upeu.servicerest.bean.BaseEntity;
 public interface Dao<T extends BaseEntity, I> {
     List<T> findAll();
 
-    T find(I id);
+    T findById(I id);
 
     T save(T entity);
 

@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-        "classpath:context.xml"})
+        "classpath:pe/edu/upeu/servicerest/config/context.xml"})
 public class CampaignDaoImplTest {
 
 	@Autowired
@@ -24,8 +24,7 @@ public class CampaignDaoImplTest {
 	@Test
 	public void testCampaignAll() {
 
-		System.out.println(campaignDao.findCampaignAll());
-		System.out.println("holaaa");
+		System.out.println(campaignDao.findCampaignAll().size());
 		// assertEquals("5", campaignDao.findAll().size()+"");
 	}
 

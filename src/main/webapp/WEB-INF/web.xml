@@ -9,7 +9,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:/pe/edu/upeu/servicerest/config/application-config.xml
+			classpath:/pe/edu/upeu/servicerest/config/context.xml
 		</param-value>
 	</context-param>
 	<listener>
