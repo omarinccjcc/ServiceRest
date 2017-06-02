@@ -24,7 +24,7 @@ public class CampaignDaoImplTest {
 	@Test
 	public void testCampaignAll() {
 
-		System.out.println(campaignDao.findCampaignAll().size());
+		System.out.println(campaignDao.findAll().size());
 		// assertEquals("5", campaignDao.findAll().size()+"");
 	}
 

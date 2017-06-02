@@ -22,63 +22,84 @@ public class RestController {
 	@Qualifier("campaignDao")
 	protected CampaignDao campaignDao;
 	
-	@RequestMapping(value = "/servicerest/campaignall", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody List<Campaign> findCampaignAll() {
-		List<Campaign> list = new ArrayList<Campaign>();
-		Campaign campaign = new Campaign();
-		campaign.setId(1L);
-		campaign.setCampaingName("Alumnos de Ingeniería de Sistemas");
-		list.add(campaign);
-
-		campaign = new Campaign();
-		campaign.setId(2L);
-		campaign.setCampaingName("Alumnos de Ingeniería de Ambiental");
-		list.add(campaign);
-
-		campaign = new Campaign();
-		campaign.setId(3L);
-		campaign.setCampaingName("Alumnos de Administración");
-		list.add(campaign);
-
-		campaign = new Campaign();
-		campaign.setId(4L);
-		campaign.setCampaingName("Alumnos de Contabilidad");
-		list.add(campaign);
-
-		campaign = new Campaign();
-		campaign.setId(5L);
-		campaign.setCampaingName("Alumnos de Ingeniería Civil");
-		list.add(campaign);
-
-		campaign = new Campaign();
-		campaign.setId(6L);
-		campaign.setCampaingName("Alumnos de Ingeniería de Industrias Alimentarias");
-		list.add(campaign);
+	@RequestMapping(value = "/servicerest/campaignall/{parametro}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody List<Campaign> findCampaignAll(@PathVariable String parametro) {		
+//		List<Campaign> list = new ArrayList<Campaign>();
+//		Campaign campaign = new Campaign();
+//		campaign.setId(1L);
+//		campaign.setCampaingName("Alumnos de Ingeniería de Sistemas");
+//		list.add(campaign);
+//
+//		campaign = new Campaign();
+//		campaign.setId(2L);
+//		campaign.setCampaingName("Alumnos de Ingeniería de Ambiental");
+//		list.add(campaign);
+//
+//		campaign = new Campaign();
+//		campaign.setId(3L);
+//		campaign.setCampaingName("Alumnos de Administración");
+//		list.add(campaign);
+//
+//		campaign = new Campaign();
+//		campaign.setId(4L);
+//		campaign.setCampaingName("Alumnos de Contabilidad");
+//		list.add(campaign);
+//
+//		campaign = new Campaign();
+//		campaign.setId(5L);
+//		campaign.setCampaingName("Alumnos de Ingeniería Civil");
+//		list.add(campaign);
+//
+//		campaign = new Campaign();
+//		campaign.setId(6L);
+//		campaign.setCampaingName("Alumnos de Ingeniería de Industrias Alimentarias");
+//		list.add(campaign);
 
 //		return list;
+		Campaign campaign = new Campaign();
+		campaign.setCampaingName(parametro);
+
+//		campaignDao.save(campaign);
+
 		return campaignDao.findCampaignAll();
 	}
 
-	@RequestMapping(value = "/servicerest/campaignmessage", method = RequestMethod.GET, headers = "Accept=application/json")
-	public @ResponseBody String findCampaignMessage() {
-		return "hola mundo cruelll";
+	@RequestMapping(value = "/servicerest/campaignmessage/{parametro}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public @ResponseBody String findCampaignMessage(@PathVariable String parametro) {
+		
+		String string[]= parametro.split("-");
+		
+		System.out.println("parametro >>>>> "+parametro);
+		
+		Campaign campaign = new Campaign();
+		campaign.setCampaingName(string[0]);
+		campaign.setDescription(string[1]);
+		campaign.setMessage(string[2]);
+
+		campaignDao.save(campaign);
+		
+		return "hola mundo cruelll "+parametro;
 	}
 	
 	@RequestMapping(value = "/servicerest/campaignbyid/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public @ResponseBody Campaign findCampaignById(@PathVariable String id) {
+		
+		String string[]= id.split("-");
+		
 		Campaign campaign = new Campaign();
 		campaign.setId(1L);
-		campaign.setCampaingName("Alumnos de Ingeniería de Sistemas");
+		campaign.setCampaingName(string[0]);
+		campaign.setDescription(string[1]);
 		return campaign;
 	}
 
-	@RequestMapping(value = "/campaignsave", method = RequestMethod.POST, headers = "Accept=application/json")
+	@RequestMapping(value = "/servicerest/campaignsave", method = RequestMethod.POST, headers = "Accept=application/json")
 	public Campaign addCampaign(@RequestBody Campaign campaign) {
 		// return countryService.addCountry(country);
 		return null;
 	}
 
-	@RequestMapping(value = "/campaignupdate", method = RequestMethod.PUT, headers = "Accept=application/json")
+	@RequestMapping(value = "/servicerest/campaignupdate", method = RequestMethod.PUT, headers = "Accept=application/json")
 	public Campaign updateCountry(@RequestBody Campaign campaign) {
 		// return countryService.updateCountry(country);
 		return null;
