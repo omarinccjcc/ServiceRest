@@ -27,6 +27,9 @@
 
 
     <bean id="campaignDao" class="pe.edu.upeu.servicerest.dao.CampaignDaoImpl"></bean>
+    <bean id="baseTypeDao" class="pe.edu.upeu.servicerest.dao.BaseTypeDaoImpl"></bean>
+    <bean id="cityDao" class="pe.edu.upeu.servicerest.dao.CityDaoImpl"></bean>
+    <bean id="institutionDao" class="pe.edu.upeu.servicerest.dao.InstitutionDaoImpl"></bean>
 
 
     <!--

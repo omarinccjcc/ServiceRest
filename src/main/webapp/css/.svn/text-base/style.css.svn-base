@@ -1,0 +1,203 @@
+/**********************
+ *  COMON USED CLASSES
+ * *******************/
+.box {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+}
+.box blockquote {
+  border-color: #ddd;
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/**********************
+ *  COMON USED CLASSES
+ * *******************/
+.groups-configuration fieldset {
+  border: 2px solid #b4cfe5;
+}
+.groups-configuration fieldset legend {
+  color: #828282;
+  font-size: 14px;
+  padding: 0 12px;
+  margin-bottom: 0px;
+  border: none;
+  width: auto;
+  margin-left: 20px;
+}
+.groups-configuration fieldset legend .group-name {
+  font-weight: bold;
+  color: #333333;
+  font-size: 18px;
+}
+.groups-configuration fieldset ul {
+  margin: 5px;
+  padding: 15px;
+}
+.groups-configuration fieldset ul li {
+  background-color: #FFFFFF;
+  border: 1px solid #CCCCCC;
+  cursor: move;
+  margin: 2px;
+  padding: 5px;
+}
+.groups-configuration fieldset ul li:hover {
+  background-image: url(../images/drag-drop.gif);
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+.groups-configuration fieldset ul li.select-placeholder {
+  background-color: #b4cfe5;
+  border: 1px solid #336699;
+}
+.groups-configuration fieldset.not-enough {
+  border-color: #ff9d93;
+}
+.groups-configuration fieldset.not-enough legend {
+  color: #fe2200;
+}
+
+#configurator {
+  background-image: url("/media/img/configurator-background.gif");
+  background-position: left;
+  background-repeat: repeat-y;
+  padding: 10px 20px 0px 20px;
+  background-color: #f8f8f8;
+  margin-bottom: 20px;
+  border-top: 1px solid #999999;
+  font-size: 12px;
+}
+#configurator label {
+  font-size: 12px;
+}
+#configurator label {
+  font-weight: normal;
+}
+#configurator .form-inline ul {
+  list-style: none;
+  margin-left: 0;
+  display: inline-block;
+}
+#configurator .form-inline ul li {
+  display: inline-block;
+}
+#configurator .form-inline label {
+  padding-top: 5px;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+#configurator .form-inline label + label {
+  margin-left: 10px;
+}
+#configurator .form-inline input[type=text],
+#configurator .form-inline select {
+  width: 60px;
+}
+#configurator .form-inline .spanx:first-child {
+  margin-left: 0px;
+}
+#configurator .form-inline .groups-selection {
+  float: left;
+  margin-right: 20px;
+}
+#configurator .control-group {
+  border-bottom: 1px solid #dddddd;
+  margin-bottom: 0px;
+  padding: 15px 0px 10px 0px;
+}
+#configurator .control-label {
+  padding-right: 20px;
+  font-weight: bold;
+}
+#configurator .controls {
+  margin-left: 180px;
+}
+#configurator .form-inline ul {
+  display: block;
+  float: left;
+}
+#configurator .form-inline ul li {
+  margin-right: 25px;
+}
+#configurator .form-inline ul li:last-child {
+  margin-right: 10px;
+}
+#configurator .form-inline .item {
+  float: left;
+  margin-right: 25px;
+}
+#configurator .form-inline .multiple {
+  display: block;
+  float: left;
+  margin-top: 1px;
+}
+#configurator .form-inline .num {
+  display: block;
+  float: right;
+  margin-top: 6px;
+  margin-left: 8px;
+}
+#configurator .form-inline .num #total-rounds {
+  font-weight: bold;
+}
+.configure .competitor select {
+  width: 200px;
+}
+.configure .round-swapper-handle {
+  line-height: 10px;
+}
+.configure #configurator .btn {
+  margin-right: 10px;
+}
+.configure #schedule-form .fixtures {
+  *zoom: 1;
+}
+.configure #schedule-form .fixtures:before,
+.configure #schedule-form .fixtures:after {
+  display: table;
+  content: "";
+}
+.configure #schedule-form .fixtures:after {
+  clear: both;
+}
+
+a#fdbk {
+  background-image: url("../images/btn-feedback.png");
+  color: #FFFFFF;
+  cursor: pointer;
+  height: 100px;
+  overflow: hidden;
+  position: fixed;
+  text-indent: -100000px;
+  top: 35%;
+  display: block;
+  width: 34px;
+  z-index: 100;
+  margin-left: 0 !important;
+  right: 0 !important;
+  border: 2px;
+}
+a#fdbk:hover,
+a#fdbk:active {
+  background-position: right;
+  background-color: transparent;
+  border-top: none;
+}
+
+.containerBody {
+	border-radius: 7px 7px 7px 7px;
+	background: none repeat scroll 0 0 #FFFFFF;
+	box-shadow: 0 0 7px 1px rgba(0, 0, 0, 0.2);
+}
